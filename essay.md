@@ -1,14 +1,12 @@
 # Fin-5350-Assignment
 
-# This is header
+# Perspective of reading James M. Buchanan’s paper--
+=============================================
+# “What should economists do?”
+-------------------------
 
 _italics_
 
-etc..
-Perspective of reading James M. Buchanan’s paper--
-=============================================
-“What should economists do?”
--------------------------
    Economists seems like a set of abstraction to me for such a while because for the most of time I make myself be caught in blindness of knowing “what exactly the economists do?”. One thing I can make sure is they focus on reaching of how to better the economic climate but still this is a perceptual intuition. In author’s vision, he believes “Economists should concentrate their attention on a form of human activity, and upon the various institutional arrangements that arise as result of this form of activity”. In another word, men’s behavior in the market is the subject for economists to pay attention on. The subtext meaning is there are many economists do not know what problems they want to focus not mention find the right approach to solve the problems. Buchanan applies a paraphrase in the end of his paper can support his position “Concentration on methodology won’t solve any of the problems for you, but at least you should know what the problems are”. For some reason, it is difficult for me to realize the deeper meaning of this aphorism that he applies but I do think he is right about this in the analyzing area of economy. 
     
     I learned both fundamental macroeconomics and microeconomics classes in undergraduate schooling. Up till now, personally, I think microeconomics is generally based on empiricism to get the description and understanding of economic entities behavior. On the other hand, macroeconomics at least issues many prediction and assumption, which makes some contribution to social progress. Meanwhile, the prediction put it in a tight corner for making the economic crisis frequency from five to seven. In Buchanan’s paper, he focuses more in the microeconomics fields, reaching on theory of choice. By following the traditional approach, we set down preference of economic entity and left complex calculation no matter how cumbersome the computation is. However, precondition of these calculation is primarily not there anymore so that the theory of choice has been lost its power. In general, this whole neatly done theory is to answer the problem that is designed to answer. As what T.D Weldon suggested in the paper, the problem in and of itself implies the presence of “solution”.
