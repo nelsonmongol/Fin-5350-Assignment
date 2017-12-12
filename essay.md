@@ -1,7 +1,7 @@
 # Fin-5350-Assignment
 
 # Perspective of reading James M. Buchanan’s paper--
-=============================================
+
 # “What should economists do?”
 -------------------------
 
