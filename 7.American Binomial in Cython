@@ -1,0 +1,48 @@
+import numpy as np
+cimport numpy as np
+
+cdef class PricingEngine:
+    """A base class for option pricing engines."""
+    cdef double calculate(self, Option option, MarketData data):
+        pass
+
+
+cdef class BinomialEngine(PricingEngine):
+    """An interface class for binomial pricing engines."""
+    def __init__(self, nsteps):
+        self._nsteps = nsteps
+
+    cdef double calculate(self, Option option, MarketData data):
+        pass
+
+
+cdef class AmericanBinomialEngine(BinomialEngine):
+    """
+    A concrete class for the American Binomial Option Pricing model.
+    """
+
+    cdef double calculate(self, Option option, MarketData data):
+        cdef double dt = option.expiry / self._nsteps
+        cdef double u = cexp((data.rate - data.div) * dt + data.vol * csqrt(dt))
+        cdef double d = cexp((data.rate - data.div) * dt - data.vol * csqrt(dt))
+        cdef double pu = (cexp((data.rate - data.div) * dt) - d)/ (u - d)
+        cdef double pd = 1.0 - pu
+        cdef double disc = cexp(-data.rate * dt)
+        cdef double dpu = disc * pu
+        cdef double dpd = disc * pd
+        cdef unsigned long num_nodes = self._nsteps + 1
+        cdef double[::1] spot_t = np.empty(num_nodes, dtype=np.float64)
+        cdef double[::1] call_t = np.empty(num_nodes, dtype=np.float64)
+        cdef unsigned long i, j
+
+        for i in range(num_nodes):
+            spot_t[i] = data.spot * cpow(u, self._nsteps - i) * cpow(d, i)
+            call_t[i] = option.payoff(spot_t[i])
+
+        for i in range(self._nsteps - 1, -1, -1):
+            for j in range(i + 1):
+                call_t[j] = dpu * call_t[j] + dpd * call_t[j+1]
+                spot_t[j] = spot_t[j] / u
+                call_t[j] = np.maximum(call_t[j], option.payoff(spot_t[j]))
+
+        return call_t[0]
