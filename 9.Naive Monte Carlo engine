@@ -1,0 +1,41 @@
+class MonteCarloEngine(PricingEngine):
+    def __init__(self, replications, time_steps, pricer):
+        self.__replications = replications
+        self.__time_steps = time_steps
+        self.__pricer = pricer
+
+    @property
+    def replications(self):
+        return self.__replications
+
+    @replications.setter
+    def replications(self, new_replications):
+        self.__replications = new_replications
+
+    @property
+    def time_steps(self):
+        return self.__time_steps
+
+    @time_steps.setter
+    def time_steps(self, new_time_steps):
+        self.__time_steps = new_time_steps
+    
+    def calculate(self, option, data):
+        return self.__pricer(self, option, data)
+
+
+def NaiveMonteCarloPricer(engine, option, data):
+    expiry = option.expiry
+    strike = option.strike
+    (spot, rate, vol, div) = data.get_data()
+    replications = engine.replications
+    dt = expiry / engine.time_steps
+    disc = np.exp(-rate * dt)
+    
+    z = np.random.normal(size = replications)
+    spotT = spot * np.exp((rate - div - 0.5 * vol * vol) * dt + vol * np.sqrt(dt) * z)
+    payoffT = option.payoff(spotT)
+
+    prc = payoffT.mean() * disc
+
+    return prc
